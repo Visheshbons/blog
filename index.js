@@ -39,3 +39,10 @@ app.use((req, res) => {
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
+
+setInterval(() => {
+    fetch("https://diminished-rights.onrender.com")
+        .catch(err => {
+            console.error("Ping failed:", err);
+        });
+}, 600000); // 600,000 milliseconds = 10 minutes
