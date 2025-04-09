@@ -1,5 +1,4 @@
 // Imports all the neccecary data
-import cookieParser from 'cookie-parser';
 import express from 'express';
 import chalk from 'chalk';
 
@@ -23,12 +22,6 @@ const warn = (message, urgency = "low") => {
     log(`${chalk.bgYellow(prefix)} ${chalk.yellow(message)}`);
 };
 
-const startTimer = console.time;
-const endTimer = console.timeEnd;
-
-const space = (num) => log("\n".repeat(num));
-const line = (num) => log(chalk.dim("-".repeat(55)).repeat(num));
-
 function getDateAndTime() {
     const date_time = new Date();
     const date = date_time.toLocaleDateString("en-GB");
@@ -36,4 +29,4 @@ function getDateAndTime() {
     return `${date} ${time}`;
 }
 
-export { app, port, chalk, cookieParser, express, getDateAndTime, log, err, warn, info, startTimer, endTimer, space, line, important, green };
+export { app, port, express, getDateAndTime, log, err, warn, info, important, green };

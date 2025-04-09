@@ -1,4 +1,4 @@
-import {  app, port, chalk, cookieParser, express, getDateAndTime, log, err, warn, info, startTimer, endTimer, space, line, important, green } from './appConfig.js';
+import { app, port, express, getDateAndTime, log, err, warn, info, important, green } from './appConfig.js';
 import fs from 'fs';
 
 const postsFilePath = './posts.json';
@@ -48,7 +48,7 @@ app.get('/', (req, res) => {
     const newPost = new Post(title, content, getDateAndTime());
     posts.push(newPost);
     savePosts(posts);
-    info(`New post added: ${title}`);
+    info(`New post added: ${green(title)}`);
     res.status(201).redirect("/");
 });
 
