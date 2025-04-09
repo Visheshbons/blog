@@ -8,15 +8,7 @@
     <link rel="icon" href="favicon.ico">
 </head>
 <body>
-    <header>
-        <h1>Welcome to the Public Blog</h1>
-        <nav>
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/post">Post</a></li>
-            </ul>
-        </nav>
-    </header>
+    <%- include('header') %>
     <main>
         <h2>Latest Posts</h2>
         <hr>
@@ -29,8 +21,6 @@
                 <hr>
             <% }); %>
     </main>
-    <footer>
-        <p>&copy; 2025 <a href="https://github.com/Visheshbons">Vishesh Kudva</a></p>
-    </footer>
+    <%- include('footer') %>
 </body>
 </html>
