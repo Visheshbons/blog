@@ -41,6 +41,7 @@ app.get('/', (req, res) => {
 }).get('/post', (req, res) => {
     res.status(200).render("post.ejs");
 }).post('/post', (req, res) => {
+    console.log(req.body); // Debugging line
     let { title, content } = req.body;
     if (!title || !content) {
         return res.status(400).send('Title and content are required!');
@@ -48,7 +49,7 @@ app.get('/', (req, res) => {
     const newPost = new Post(title, content, getDateAndTime());
     posts.push(newPost);
     savePosts(posts);
-    info(`New post added: ${green(title)}`);
+    info(`New post added: ${title}`);
     res.status(201).redirect("/");
 });
 
