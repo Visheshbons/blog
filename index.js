@@ -1,4 +1,21 @@
 import {  app, port, chalk, cookieParser, express, getDateAndTime, log, err, warn, info, startTimer, endTimer, space, line, important, green } from './appConfig.js';
+import fs from 'fs';
+
+const postsFilePath = './posts.json';
+
+// Function to load posts from the file
+function loadPosts() {
+    if (fs.existsSync(postsFilePath)) {
+        const data = fs.readFileSync(postsFilePath, 'utf-8');
+        return JSON.parse(data);
+    }
+    return [];
+}
+
+// Function to save posts to the file
+function savePosts(posts) {
+    fs.writeFileSync(postsFilePath, JSON.stringify(posts, null, 2), 'utf-8');
+}
 
 class Post {
     constructor(title, content, date) {
@@ -8,9 +25,7 @@ class Post {
     };
 };
 
-let posts = [
-    new Post("The site is up and running!", "Would you believe it? The only problem is you can't post just yet.", getDateAndTime()),
-];
+let posts = loadPosts();
 
 // Middleware to parse JSON
 app.use(express.json());
@@ -29,8 +44,10 @@ app.get('/', (req, res) => {
     let { title, content } = req.body;
     if (!title || !content) {
         return res.status(400).send('Title and content are required!');
-    };
-    posts.push(new Post(title, content, getDateAndTime()));
+    }
+    const newPost = new Post(title, content, getDateAndTime());
+    posts.push(newPost);
+    savePosts(posts);
     info(`New post added: ${title}`);
     res.status(201).redirect("/");
 });
