@@ -9,7 +9,7 @@ class Post {
 };
 
 let posts = [
-    new Post("The site is up and running!", "Would you beleive it?", getDateAndTime()),
+    new Post("The site is up and running!", "Would you believe it? The only problem is you can't post just yet.", getDateAndTime()),
 ];
 
 // Middleware to parse JSON
