@@ -33,6 +33,9 @@ app.use(express.json());
 // Add middleware to parse URL-encoded data
 app.use(express.urlencoded({ extended: true }));
 
+// Middleware to serve static files
+app.use(express.static('public'));
+
 // All of the required rendering code
 app.get('/', (req, res) => {
     res.render("index.ejs", {
