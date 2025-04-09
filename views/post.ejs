@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home | V-Blogger</title>
+    <title>Post | V-Blogger</title>
 </head>
 <body>
     <header>
@@ -16,16 +16,16 @@
         </nav>
     </header>
     <main>
-        <h2>Latest Posts</h2>
+        <h2>Post</h2>
         <hr>
-            <% posts.forEach(function(post) { %>
-                <article>
-                    <h3><%- post.title %></h3>
-                    <p><%- post.content.replace(/\n/g, '<br>') %></p>
-                    <p><small>Posted on: <%- post.date %></small></p>
-                </article>
-                <hr>
-            <% }); %>
+        <form action="/post" method="POST">
+            <label for="title">Title:</label><br>
+            <input type="text" id="title" name="title" required><br><br>
+            <label for="content">Content:</label><br>
+            <textarea id="content" name="content" rows="4" cols="50" required></textarea><br><br>
+            <input type="submit" value="Submit">
+        </form>
+        <hr>
     </main>
     <footer>
         <p>&copy; 2025 <a href="https://github.com/Visheshbons">Vishesh Kudva</a></p>

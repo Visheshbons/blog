@@ -15,31 +15,32 @@ let posts = [
 // Middleware to parse JSON
 app.use(express.json());
 
-// Define a basic route
+// Add middleware to parse URL-encoded data
+app.use(express.urlencoded({ extended: true }));
+
+// All of the required rendering code
 app.get('/', (req, res) => {
     res.render("index.ejs", {
         posts: posts,
     });
+}).get('/post', (req, res) => {
+    res.status(200).render("post.ejs");
+}).post('/post', (req, res) => {
+    let { title, content } = req.body;
+    if (!title || !content) {
+        return res.status(400).send('Title and content are required!');
+    };
+    posts.push(new Post(title, content, getDateAndTime()));
+    info(`New post added: ${title}`);
+    res.status(201).redirect("/");
 });
 
 // Handle unspecified routes and redirect to 404.ejs
 app.use((req, res) => {
-    const isCriticalRoute = ["/", "/book", "/contact"].includes(req.originalUrl);
-    res.status(404).render("404.ejs", {
-        url: req.originalUrl,
-    });
+    const isCriticalRoute = ["/", "/post"].includes(req.originalUrl);
+    res.status(404).send("ERROR_404_PAGE_NOT_FOUND");
     err(`404: ${req.originalUrl}`, isCriticalRoute ? "high" : "low");
     warn("ERR404 catcher activated", "low");
-});
-
-// Posts handler
-app.post('/posts', (req, res) => {
-    const { title, content } = req.body;
-    if (!title || !content) {
-        return res.status(400).send('Title and content are required!');
-    }
-    // Logic to save the post would go here
-    res.status(201).redirect("/");
 });
 
 // Start the server
