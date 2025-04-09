@@ -1,4 +1,5 @@
 // Imports all the neccecary data
+import cookieParser from 'cookie-parser';
 import express from 'express';
 import chalk from 'chalk';
 
@@ -35,4 +36,4 @@ function getDateAndTime() {
     return `${date} ${time}`;
 }
 
-export { app, port, portForward, chalk, cookieParser, express, getDateAndTime, log, err, warn, info, startTimer, endTimer, space, line, important, green, images, users };
+export { app, port, chalk, cookieParser, express, getDateAndTime, log, err, warn, info, startTimer, endTimer, space, line, important, green };

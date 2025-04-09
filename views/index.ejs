@@ -16,5 +16,20 @@
             </ul>
         </nav>
     </header>
+    <main>
+        <h2>Latest Posts</h2>
+        <hr>
+            <% posts.forEach(function(post) { %>
+                <article>
+                    <h3><%- post.title %></h3>
+                    <p><%- post.content %></p>
+                    <p><small>Posted on: <%- post.date %></small></p>
+                </article>
+                <hr>
+            <% }); %>
+    </main>
+    <footer>
+        <p>&copy; 2025 <a href="https://github.com/Visheshbons">Vishesh Kudva</a></p>
+    </footer>
 </body>
 </html>
