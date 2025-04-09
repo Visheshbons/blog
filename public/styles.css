@@ -20,23 +20,35 @@ header h1 {
     font-size: 2.5em;
 }
 
+/* Center the navigation links */
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 nav ul {
+    display: flex;
+    justify-content: center;
     list-style: none;
     padding: 0;
+    margin: 0;
 }
 
 nav ul li {
-    display: inline;
     margin: 0 10px;
 }
 
 nav ul li a {
     color: #fff;
     text-decoration: none;
+    padding: 10px;
+    display: block;
 }
 
 nav ul li a:hover {
-    text-decoration: underline;
+    background: #555;
+    border-radius: 5px;
 }
 
 main {
@@ -113,4 +125,83 @@ form input[type="submit"] {
 
 form input[type="submit"]:hover {
     background: #555;
+}
+
+/* Styles for the dropdown menu */
+.menu {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu.show {
+    display: flex;
+}
+
+.menu li {
+    margin: 10px 0;
+}
+
+.menu li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px;
+    display: block;
+}
+
+.menu li a:hover {
+    background: #555;
+    border-radius: 5px;
+}
+
+/* Hamburger menu icon */
+.menu-icon {
+    display: none;
+    font-size: 1.5em;
+    color: #fff;
+    cursor: pointer;
+    padding: 10px;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .menu-icon {
+        display: block;
+    }
+
+    .menu {
+        display: none;
+        flex-direction: column;
+        background: #333;
+        position: absolute;
+        top: 50px;
+        right: 10px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .menu.show {
+        display: flex;
+    }
+
+    nav ul {
+        display: none;
+    }
+}
+
+/* Hide the dropdown menu and show the horizontal menu on larger screens */
+@media (min-width: 769px) {
+    .menu {
+        display: flex;
+        flex-direction: row;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    nav ul {
+        display: flex;
+    }
 }
