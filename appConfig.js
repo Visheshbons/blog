@@ -1,6 +1,33 @@
 // Imports all the neccecary data
 import express from 'express';
 import chalk from 'chalk';
+import fs from 'fs';
+
+const postsFilePath = './posts.json';
+
+// Function to load posts from the file
+function loadPosts() {
+    if (fs.existsSync(postsFilePath)) {
+        const data = fs.readFileSync(postsFilePath, 'utf-8');
+        return JSON.parse(data);
+    }
+    return [];
+}
+
+// Function to save posts to the file
+function savePosts(posts) {
+    fs.writeFileSync(postsFilePath, JSON.stringify(posts, null, 2), 'utf-8');
+}
+
+class Post {
+    constructor(title, content, date) {
+        this.title = title;
+        this.content = content;
+        this.date = date;
+    };
+};
+
+let posts = loadPosts();
 
 // Optimized utility functions and variable declarations
 const app = express();
@@ -29,4 +56,4 @@ function getDateAndTime() {
     return `${date} ${time}`;
 }
 
-export { app, port, express, getDateAndTime, log, err, warn, info, important, green };
+export { app, port, express, getDateAndTime, log, err, warn, info, important, green, fs, loadPosts, savePosts, Post, posts };

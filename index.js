@@ -1,33 +1,4 @@
-import { app, port, express, getDateAndTime, log, err, warn, info, important, green } from './appConfig.js';
-import fs from 'fs';
-
-const postsFilePath = './posts.json';
-
-// Function to load posts from the file
-function loadPosts() {
-    if (fs.existsSync(postsFilePath)) {
-        const data = fs.readFileSync(postsFilePath, 'utf-8');
-        return JSON.parse(data);
-    }
-    return [];
-}
-
-// Function to save posts to the file
-function savePosts(posts) {
-    fs.writeFileSync(postsFilePath, JSON.stringify(posts, null, 2), 'utf-8');
-}
-
-class Post {
-    constructor(title, content, date) {
-        this.title = title;
-        this.content = content;
-        this.date = date;
-    };
-};
-
-let posts = loadPosts();
-
-// Middleware to parse JSON
+import { app, port, express, getDateAndTime, log, err, warn, info, important, green, fs, loadPosts, savePosts, Post, posts } from './appConfig.js';// Middleware to parse JSON
 app.use(express.json());
 
 // Add middleware to parse URL-encoded data
