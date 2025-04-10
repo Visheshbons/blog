@@ -1,6 +1,8 @@
 // Import necessary files
 import { app, port, express, log, err, warn, info, important, green, fs, loadPosts, savePosts, Post, posts } from './appConfig.js';// Middleware to parse JSON
-app.use(express.json()).use(express.urlencoded({ extended: true })).use(express.static('public'));
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+app.use(express.static('public'));
 
 // All of the required rendering code
 app.get('/', (req, res) => {
@@ -20,18 +22,12 @@ app.get('/', (req, res) => {
     savePosts(posts);
     info(`New post added: ${title}`);
     res.status(201).redirect("/");
-});
-
-// Handle unspecified routes and redirect to 404.ejs
-app.use((req, res) => {
+}).use((req, res) => {
     const isCriticalRoute = ["/", "/post"].includes(req.originalUrl);
     res.status(404).send("ERROR_404_PAGE_NOT_FOUND");
     err(`404: ${req.originalUrl}`, isCriticalRoute ? "high" : "low");
     warn("ERR404 catcher activated", "low");
-});
-
-// Start the server
-app.listen(port, () => {
+}).listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
 
