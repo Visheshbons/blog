@@ -16,7 +16,7 @@
                 <article>
                     <h3><%- post.title %></h3>
                     <p><%- post.content.replace(/\n/g, '<br>') %></p>
-                    <p><small>Posted on: <%- post.date %></small></p>
+                    <p><small>Posted on: <%- post.date %> by <%- post.author %></small></p>
                 </article>
                 <hr>
             <% }); %>

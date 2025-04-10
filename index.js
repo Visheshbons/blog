@@ -11,11 +11,11 @@ app.get('/', (req, res) => {
     res.status(200).render("post.ejs");
 }).post('/post', (req, res) => {
     console.log(req.body); // Debugging line
-    let { title, content } = req.body;
-    if (!title || !content) {
+    let { title, content, author } = req.body;
+    if (!title || !content || !author) {
         return res.status(400).send('Title and content are required!');
     }
-    const newPost = new Post(title, content, getDateAndTime());
+    const newPost = new Post(title, content, getDateAndTime("both"), author);
     posts.push(newPost);
     savePosts(posts);
     info(`New post added: ${title}`);
