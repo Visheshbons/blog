@@ -34,7 +34,7 @@ app.get('/', (req, res) => {
 });
 
 setInterval(() => {
-    fetch("https://diminished-rights.onrender.com")
+    fetch("https://v-blogger.onrender.com")
         .catch(err => {
             console.error("Ping failed:", err);
         });
