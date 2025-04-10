@@ -40,4 +40,4 @@ setInterval(() => {
         .catch(err => {
             console.error("Ping failed:", err);
         });
-}, 600000); // 600,000 milliseconds = 10 minutes
+}, 60000); // 60,000 milliseconds = 1 minute
