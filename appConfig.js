@@ -51,9 +51,10 @@ const warn = (message, urgency = "low") => {
 
 function getDateAndTime() {
     const date_time = new Date();
-    const date = date_time.toLocaleDateString("en-GB");
-    const time = date_time.toLocaleTimeString("en-US", { hour12: true });
+    const options = { timeZone: 'Pacific/Auckland', hour12: true };
+    const date = date_time.toLocaleDateString("en-GB", options);
+    const time = date_time.toLocaleTimeString("en-US", options);
     return `${date} ${time}`;
-}
+};
 
 export { app, port, express, getDateAndTime, log, err, warn, info, important, green, fs, loadPosts, savePosts, Post, posts };
