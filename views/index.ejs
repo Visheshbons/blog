@@ -16,12 +16,12 @@
                 <article>
                     <h3><%- post.title %></h3>
                     <p><%- post.content.replace(/\n/g, '<br>') %></p>
-                    <p><small>Posted on: <span data-post-date="<%- post.date %>"></span> by <%- post.author %></small></p>
+                    <p><small>Posted on (UTC): <span data-post-date="<%- post.date %>"></span> by <%- post.author %></small></p>
                 </article>
                 <hr>
             <% }); %>
     </main>
     <%- include('footer') %>
-    <script src="dateConversion.js"></script>
+    <script src="/dateConversion.js" defer></script>
 </body>
 </html>
