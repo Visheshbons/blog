@@ -20,7 +20,7 @@ function savePosts(posts) {
 }
 
 class Post {
-    constructor(title, content, date, author) {
+    constructor(title, content, author, date = new Date().toISOString()) {
         this.title = title;
         this.content = content;
         this.date = date;
@@ -50,20 +50,4 @@ const warn = (message, urgency = "low") => {
     log(`${chalk.bgYellow(prefix)} ${chalk.yellow(message)}`);
 };
 
-function getDateAndTime(type) {
-    const date_time = new Date();
-    const options = { timeZone: 'Pacific/Auckland', hour12: true };
-    const date = date_time.toLocaleDateString("en-GB", options);
-    const time = date_time.toLocaleTimeString("en-US", options);
-    if (type === "date") {
-        return `${date}`;
-    } else if (type === "time") {
-        return `${time}`;
-    } else if (type === "both") {
-        return `${date} ${time}`;
-    } else {
-        return `Something went wrong with the date and time function`;
-    };
-};
-
-export { app, port, express, getDateAndTime, log, err, warn, info, important, green, fs, loadPosts, savePosts, Post, posts };
+export { app, port, express, log, err, warn, info, important, green, fs, loadPosts, savePosts, Post, posts };

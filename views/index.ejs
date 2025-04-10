@@ -16,11 +16,21 @@
                 <article>
                     <h3><%- post.title %></h3>
                     <p><%- post.content.replace(/\n/g, '<br>') %></p>
-                    <p><small>Posted on: <%- post.date %> by <%- post.author %></small></p>
+                    <p><small>Posted on: <span data-post-date="<%- post.date %>"></span> by <%- post.author %></small></p>
                 </article>
                 <hr>
             <% }); %>
     </main>
     <%- include('footer') %>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const dateElements = document.querySelectorAll('[data-post-date]');
+            dateElements.forEach(element => {
+                const isoDate = element.getAttribute('data-post-date');
+                const localDate = new Date(isoDate).toLocaleString();
+                element.textContent = localDate;
+            });
+        });
+    </script>
 </body>
 </html>
