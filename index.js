@@ -1,3 +1,4 @@
+// Import necessary files
 import { app, port, express, getDateAndTime, log, err, warn, info, important, green, fs, loadPosts, savePosts, Post, posts } from './appConfig.js';// Middleware to parse JSON
 app.use(express.json()).use(express.urlencoded({ extended: true })).use(express.static('public'));
 
