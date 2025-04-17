@@ -32,10 +32,3 @@ app.get('/', (req, res) => {
 }).listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
-
-setInterval(() => {
-    fetch("https://v-blogger.onrender.com")
-        .catch(err => {
-            console.error("Ping failed:", err);
-        });
-}, 60000); // 60,000 milliseconds = 1 minute
